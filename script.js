@@ -1,38 +1,50 @@
-// DOM Manipulation
-// Buat elemen baru
-const pBaru = document.createElement('p');
-const teksPBaru = document.createTextNode('Paragfar Baru');
+const tUbahWarna = document.getElementById('tUbahWarna');
+tUbahWarna.onclick = function() {
+    // document.body.style.backgroundColor = 'lightblue';
+    // document.body.setAttribute('class', 'biru-muda');
+    document.body.classList.toggle('biru-muda');
+}
 
-// Simpan tulisan ke dalam paragraf.
-pBaru.appendChild(teksPBaru);
+const tAcakWarna = document.createElement('button');
+const teksTombol = document.createTextNode('Acak Warna');
+tAcakWarna.appendChild(teksTombol);
+tAcakWarna.setAttribute('type', 'button');
+tUbahWarna.after(tAcakWarna);
 
-// Simpan pBaru di akhir Section A.
-const sectionA = document.getElementById('a');
-sectionA.appendChild(pBaru);
+tAcakWarna.addEventListener('click', function() {
+    const r = Math.round(Math.random() * 255 + 1);
+    const g = Math.round(Math.random() * 255 + 1);
+    const b = Math.round(Math.random() * 255 + 1);
+    document.body.style.backgroundColor = 'rgb('+ r +','+ g +','+ b +')';
+});
 
-const liBaru = document.createElement('li');
-const teksLiBaru = document.createTextNode('Item Baru');
-liBaru.appendChild(teksLiBaru);
+const sMerah = document.querySelector('input[name=sMerah]');
+const sHijau = document.querySelector('input[name=sHijau]');
+const sBiru = document.querySelector('input[name=sBiru]');
 
-const ul = document.querySelector('section#b ul');
-const li2 = ul.querySelector('li:nth-child(2)');
+sMerah.addEventListener('input', function() {
+    const r = sMerah.value;
+    const g = sHijau.value;
+    const b = sBiru.value;
+    document.body.style.backgroundColor = 'rgb('+ r +','+ g +','+ b +')';
+});
 
-ul.insertBefore(liBaru, li2);
+sHijau.addEventListener('input', function() {
+    const r = sMerah.value;
+    const g = sHijau.value;
+    const b = sBiru.value;
+    document.body.style.backgroundColor = 'rgb('+ r +','+ g +','+ b +')';
+});
 
-const link = document.getElementsByTagName('a')[0];
+sBiru.addEventListener('input', function() {
+    const r = sMerah.value;
+    const g = sHijau.value;
+    const b = sBiru.value;
+    document.body.style.backgroundColor = 'rgb('+ r +','+ g +','+ b +')';
+});
 
-sectionA.removeChild(link);
-
-const sectionB = document.getElementById('id');
-const p4 = sectionB.querySelector('p');
-
-const h2Baru = document.createElement('h2');
-const teksH2Baru = document.createTextNode('Judul Baru');
-
-h2Baru.appendChild(teksH2Baru);
-
-sectionB.replaceChild(h2Baru, p4);
-
-pBaru.style.backgroundColor = 'lightgreen';
-liBaru.style.backgroundColor = 'lightgreen';
-h2Baru.style.backgroundColor = 'lightgreen';
+document.body.addEventListener('mousemove', function(event) {
+    const xPos = Math.round((event.clientX / window.innerWidth) * 255);
+    const yPos = Math.round((event.clientY / window.innerHeight) * 255);
+    document.body.style.backgroundColor = 'rgb('+ xPos +','+ yPos +',100)';
+});
